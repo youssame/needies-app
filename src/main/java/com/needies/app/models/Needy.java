@@ -11,10 +11,13 @@ import java.util.UUID;
 @Entity(name = "needies")
 public class Needy {
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", columnDefinition = "VARCHAR(255)")
-    private UUID id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
+    private String id;
 
     private String name;
 
@@ -58,7 +61,7 @@ public class Needy {
         this.updateDate = updateDate;
     }
 
-    public Needy(UUID id, String name, String slug, String description, String image, Long neededAmount, Long restAmount, Date creationDate, Date updateDate) {
+    public Needy(String id, String name, String slug, String description, String image, Long neededAmount, Long restAmount, Date creationDate, Date updateDate) {
         this.id = id;
         this.name = name;
         this.slug = slug;
